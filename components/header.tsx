@@ -1,14 +1,14 @@
 
 'use client';
+import { useSideBarToggle } from "@/hooks/use-sidebar-toggle";
 import classNames from "classnames";
-
-import { Dispatch, SetStateAction } from "react";
 import { BsList } from "react-icons/bs"
 
-export default function Header({ toggleCollapse, setToggleCollapse }: { toggleCollapse: boolean, setToggleCollapse: Dispatch<SetStateAction<boolean>> }) {
+export default function Header() {
 
+    const { toggleCollapse, invokeToggleCollapse } = useSideBarToggle();
     const sidebarToggle = () => {
-        setToggleCollapse(!toggleCollapse);
+        invokeToggleCollapse();
     }
     const headerStyle = classNames("bg-[#31353d] fixed w-full z-0 px-4 shadow-sm shadow-slate-500/40",
         {
@@ -22,7 +22,7 @@ export default function Header({ toggleCollapse, setToggleCollapse }: { toggleCo
                     <BsList />
                 </button>
                 <div className="sm:order-2 order-1 h-10 w-10 rounded-full light:bg:[#efefef] bg-[#3a3f48] flex items-center justify-center text-center">
-                    <span className="font-semibold text-sm">HQ</span>             
+                    <span className="font-semibold text-sm">HQ</span>
                 </div>
             </div>
         </header>

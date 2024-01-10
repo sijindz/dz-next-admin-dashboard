@@ -1,8 +1,6 @@
 'use client';
-import type { Metadata } from 'next'
 import { Karla } from 'next/font/google'
 import './globals.css'
-import { useState } from 'react'
 import { SideBar } from '@/components/sidebar';
 import Header from '@/components/header';
 import PageWrapper from '@/components/pagewrapper';
@@ -17,17 +15,14 @@ export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
-}) {
-
-  const [toggleCollapse, setToggleCollapse] = useState(false);
-
+}) {  
   return (
     <html lang="en">
       <body className={karla.className}>
         <div className='min-h-screen flex'>
-          <SideBar toggleCollapse={toggleCollapse} setToggleCollapse={setToggleCollapse}></SideBar>
-          <Header toggleCollapse={toggleCollapse} setToggleCollapse={setToggleCollapse}></Header>
-          <PageWrapper children={children} toggleCollapse={toggleCollapse}></PageWrapper>
+          <SideBar></SideBar>
+          <Header></Header>
+          <PageWrapper children={children}></PageWrapper>
         </div>
       </body>
     </html>

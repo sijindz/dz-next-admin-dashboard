@@ -16,6 +16,18 @@
   }
 }
 
-body {
+.sidebar{
+  scrollbar-width: thin;
+  scrollbar-color: #999999 transparent;
+}
 
+/* For Google Chrome and others */
+.sidebar::-webkit-scrollbar {
+  background: transparent;
+  width: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #999999;
+  border-radius: 10px;
 }
