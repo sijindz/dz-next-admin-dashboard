@@ -8,7 +8,7 @@ import SideBarMenuGroup from './sidebar-menu-group';
 
 export const SideBar = () => {
     const { toggleCollapse } = useSideBarToggle();
-    const asideStyle = classNames("sidebar overflow-y-auto overflow-x-auto fixed light:bg-[#fff] bg-[#31353d] text-gray-500 z-50 h-full shadow-lg shadow-gray-900/20 transition duration-300 ease-in-out",
+    const asideStyle = classNames("sidebar overflow-y-auto overflow-x-auto fixed bg-sidebar h-full shadow-sm shadow-slate-500/40 transition duration-300 ease-in-out z-[99999]",
         {
             ["w-[20rem]"]: !toggleCollapse,
             ["sm:w-[5.4rem] sm:left-0 left-[-100%]"]: toggleCollapse,
@@ -19,7 +19,7 @@ export const SideBar = () => {
             <div className="sidebar-top relative flex items-center px-3.5 py-5">
                 <Image width={35} alt="" className="w-12 mx-3.5 min-h-fit"
                     height={35} src='/DZ-logos_white.png' id="dzIcon" />
-                <h3 className={classNames("pl-2 font-bold text-2xl min-w-max text-[#e6e9ee] light:text-[#6e768e]",
+                <h3 className={classNames("pl-2 font-bold text-2xl min-w-max text-sidebar-foreground",
                     { hidden: toggleCollapse })}>
                     DZ Dashboard</h3>
             </div>

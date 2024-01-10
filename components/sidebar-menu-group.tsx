@@ -8,7 +8,7 @@ const SideBarMenuGroup = ({ menuGroup }: { menuGroup: SideNavItemGroup }) => {
 
     const { toggleCollapse } = useSideBarToggle();
 
-    const menuGroupTitleSyle = classNames('py-4 tracking-[.1rem] font-medium uppercas text-sm text-[#A5A1AA] ',
+    const menuGroupTitleSyle = classNames('py-4 tracking-[.1rem] font-medium uppercase text-sm text-sidebar-foreground',
         {
             'text-center': toggleCollapse
         }
