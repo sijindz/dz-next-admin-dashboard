@@ -1,3 +1,4 @@
+'use client'
 import { useSideBarToggle } from '@/hooks/use-sidebar-toggle';
 import classNames from 'classnames';
 import { ReactNode } from 'react';
@@ -5,10 +6,10 @@ import { ReactNode } from 'react';
 export default function PageWrapper({ children }: { children: ReactNode }) {
 
     const { toggleCollapse } = useSideBarToggle();
-    const bodyStyle = classNames("bg-background flex-grow p-2 mt-16",
+    const bodyStyle = classNames("bg-background flex-grow mt-16 px-4",
         {
-            ["sm:pl-[20.4rem]"]: !toggleCollapse,
-            ["sm:pl-[5.8rem]"]: toggleCollapse,
+            ["sm:pl-[21rem]"]: !toggleCollapse,
+            ["sm:pl-[6.4rem]"]: toggleCollapse,
         });
 
     return (

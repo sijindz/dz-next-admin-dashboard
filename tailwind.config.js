@@ -56,9 +56,9 @@ module.exports = {
           foreground: "hsl(var(--sidebar-foreground))",
           muted:{
             DEFAULT: "hsl(var(--sidebar-muted))",
-            foreground: "hsl(var(--sidebar-muted-foreground))",
+            foreground: "hsl(var(--sidebar-muted-foreground))",            
           }
-        },
+        }
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -3,6 +3,7 @@ import { useSideBarToggle } from "@/hooks/use-sidebar-toggle";
 import classNames from "classnames";
 import { BsList } from "react-icons/bs"
 import { UserNav } from "./usernav";
+import { ThemeSwitcher } from "./theme-switcher";
 
 export default function Header() {
 
@@ -21,8 +22,14 @@ export default function Header() {
                 <button onClick={sidebarToggle} className="order-2 sm:order-1 shrink-btn float-right bg-sidebar-muted text-sidebar-muted-foreground hover:bg-foreground hover:text-background ml-3 rounded-md w-[30px] h-[30px] flex items-center justify-center shadow-md shadow-black/10  transition duration-300 ease-in-out">
                     <BsList />
                 </button>
-                <div className="sm:order-2 order-1 h-10 w-10 rounded-full bg-bg-sidebar-muted flex items-center justify-center text-center">
-                   <UserNav/>
+
+                <div className="flex items-center justify-between sm:order-2 order-1">
+                    <div className="p-2">
+                        <ThemeSwitcher></ThemeSwitcher>
+                    </div>
+                    <div className="h-10 w-10 rounded-full bg-bg-sidebar-muted flex items-center justify-center text-center">
+                        <UserNav />
+                    </div>
                 </div>
             </div>
         </header>

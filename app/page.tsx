@@ -1,15 +1,14 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import Image from 'next/image'
 import { Overview } from './components/overview'
 import { RecentSales } from './components/recent-sales'
 
 export default function Home() {
   return (
     <>
-       <h2 className="text-3xl font-bold tracking-tight ml-8 mt-4">Dashboard</h2>
+       <h2 className="text-3xl font-bold tracking-tight my-4">Dashboard</h2>
 
-      <div className="flex-1 space-y-4 p-8">
+      <div className="flex-1 space-y-4">
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -114,8 +113,8 @@ export default function Home() {
             </CardContent>
           </Card>
         </div>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-          <Card className="col-span-4">
+        <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-7">
+          <Card className="lg:col-span-4">
             <CardHeader>
               <CardTitle>Overview</CardTitle>
             </CardHeader>
@@ -123,7 +122,7 @@ export default function Home() {
               <Overview />
             </CardContent>
           </Card>
-          <Card className="col-span-3">
+          <Card className="lg:col-span-3">
             <CardHeader>
               <CardTitle>Recent Sales</CardTitle>
               <CardDescription>
