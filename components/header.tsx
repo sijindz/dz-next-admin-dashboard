@@ -27,7 +27,7 @@ export default function Header() {
                     <div className="p-2">
                         <ThemeSwitcher></ThemeSwitcher>
                     </div>
-                    <div className="h-10 w-10 rounded-full bg-bg-sidebar-muted flex items-center justify-center text-center">
+                    <div className="h-10 w-10 rounded-full bg-sidebar-muted flex items-center justify-center text-center">
                         <UserNav />
                     </div>
                 </div>

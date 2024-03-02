@@ -23,18 +23,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={karla.className}>
+      <body className={karla.className + ' h-screen overflow-hidden'}>
         <ThemeProvider
           themes={['dark', 'custom', 'light']}
           attribute="class"
           enableSystem
           disableTransitionOnChange
         >
-          <div className='min-h-screen flex'>
-            <SideBar></SideBar>
-            <Header></Header>
-            <PageWrapper children={children}></PageWrapper>
-          </div>
+          <>
+            <SideBar />
+            <div className="flex flex-col h-full w-full">
+              <Header />
+              <PageWrapper children={children} />
+            </div>
+          </>
         </ThemeProvider>
       </body>
     </html>

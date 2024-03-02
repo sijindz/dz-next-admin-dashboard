@@ -19,12 +19,13 @@ export const SideBarMenuItem = ({ item }: { item: SideNavItem }) => {
         setSubMenuOpen(!subMenuOpen);
     };
 
-    const inactiveLink = classNames("flex items-center min-h-[40px] h-full text-sidebar-foreground py-2 px-4 hover:text-sidebar-muted-foreground  hover:bg-sidebar-muted rounded-md transition duration-200"
+    const inactiveLink = classNames("flex items-center min-h-[40px] h-full text-sidebar-foreground py-2 px-4 hover:text-sidebar-muted-foreground  hover:bg-sidebar-muted rounded-md transition duration-200",
+        { ["justify-center"]: toggleCollapse }
     );
 
-    const activeLink = classNames("active text-sidebar-muted-foreground bg-sidebar-muted");
+    const activeLink = classNames(" text-sidebar-muted-foreground bg-sidebar-muted");
 
-    const navMenuDropdownItem = "text-red py-2 px-4 light:hover:text-black hover:text-sidebar-muted-foreground transition duration-200 rounded-md"
+    const navMenuDropdownItem = "text-red py-2 px-4 hover:text-sidebar-muted-foreground transition duration-200 rounded-md"
 
     const dropdownMenuHeaderLink = classNames(inactiveLink,
         {
@@ -37,7 +38,7 @@ export const SideBarMenuItem = ({ item }: { item: SideNavItem }) => {
                 <div className="min-w-[18px]">
                     <a className={`${dropdownMenuHeaderLink} ${pathname.includes(item.path) ? activeLink : ''}`}
                         onClick={toggleSubMenu}>
-                        {item.icon}
+                        <div className='min-w-[20px]'>{item.icon}</div>
                         {!toggleCollapse && <>
                             <span className='ml-3 text-base leading-6 font-semibold'>{item.title}</span>
                             <BsChevronRight className={`${subMenuOpen ? 'rotate-90' : ''} ml-auto stroke-2 text-xs`} />
@@ -52,7 +53,7 @@ export const SideBarMenuItem = ({ item }: { item: SideNavItem }) => {
                                         <Link
                                             key={idx}
                                             href={subItem.path}
-                                            className={`${navMenuDropdownItem} ${subItem.path === pathname ? 'text-white ' : 'text-sidebar-foreground'}`}
+                                            className={`${navMenuDropdownItem} ${subItem.path === pathname ? ' text-sidebar-muted-foreground font-medium ' : ' text-sidebar-foreground'}`}
                                         >
                                             <span>{subItem.title}</span>
                                         </Link>
@@ -64,7 +65,7 @@ export const SideBarMenuItem = ({ item }: { item: SideNavItem }) => {
                 </div>
             ) :
                 (<Link href={item.path} className={`${inactiveLink} ${item.path === pathname ? activeLink : ''}`}>
-                    {item.icon}
+                    <div className='min-w-[20px]'>{item.icon}</div>
                     {!toggleCollapse && (<span className="ml-3 leading-6 font-semibold">{item.title}</span>)}
                 </Link>)}
         </>
