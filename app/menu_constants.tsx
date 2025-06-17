@@ -17,24 +17,34 @@ export const SIDENAV_ITEMS: SideNavItemGroup[] = [
         title: "Manage",
         menuList: [
             {
-                title: 'Products',
-                path: '/products',
+                title: 'Roles',
+                path: '/role',
                 icon: <BsKanban size={20} />,
                 submenu: true,
                 subMenuItems: [
-                    { title: 'All', path: '/products' },
-                    { title: 'New', path: '/products/new' },
+                    { title: 'All', path: '/role' },
+                    { title: 'New', path: '/role/new' },
                 ],
             },
             {
-                title: 'Orders',
-                path: '/orders',
-                icon: <BsListUl size={20} />,
+                title: 'Access',
+                path: '/access',
+                icon: <BsKanban size={20} />,
+                submenu: true,
+                subMenuItems: [
+                    { title: 'All', path: '/access' },
+                    { title: 'New', path: '/access/new' },
+                ],
             },
             {
-                title: 'Feedbacks',
-                path: '/feedbacks',
-                icon: <BsEnvelope size={20} />,
+                title: 'Users',
+                path: '/users',
+                icon: <BsKanban size={20} />,
+                submenu: true,
+                subMenuItems: [
+                    { title: 'All', path: '/users' },
+                    { title: 'Register', path: '/users/register' }
+                ],
             }
         ]
     },
@@ -45,6 +55,10 @@ export const SIDENAV_ITEMS: SideNavItemGroup[] = [
                 title: 'Account',
                 path: '/account',
                 icon: <BsGear size={20} />,
+                submenu: true,
+                subMenuItems: [
+                    { title: 'Change Password', path: '/account/change-password' },
+                ],
             },
             {
                 title: 'Help',

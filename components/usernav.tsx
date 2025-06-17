@@ -3,8 +3,20 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem,
 import { Button } from "./ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import Link from "next/link";
+import Cookies from 'js-cookie';
+import { useRouter } from "next/navigation";
 
 export function UserNav() {
+
+    const router = useRouter();
+
+    function logout() {
+        console.log("logout.....")
+        Cookies.remove('_token');
+        router.push('/logout');
+        router.refresh();
+    }
+
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -15,8 +27,8 @@ export function UserNav() {
                     </Avatar>
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56 z-[99998]">
-                <DropdownMenuLabel>
+            <DropdownMenuContent className="w-56 z-[99998]" align="end" forceMount>
+                <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
                         <p className="text-sm font-medium leading-none">Sijin Raj</p>
                         <p className="text-xs leading-none text-muted-foreground">
@@ -37,7 +49,7 @@ export function UserNav() {
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                    <Link href="/login" >Log out</Link>
+                    <Link href="/logout" >Log out</Link>
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>

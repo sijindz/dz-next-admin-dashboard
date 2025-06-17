@@ -1,6 +1,4 @@
 
-import { Overview } from '@/app/components/overview'
-import { RecentSales } from '@/app/components/recent-sales'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 
@@ -119,9 +117,6 @@ export default function Dashboard() {
             <CardHeader>
               <CardTitle>Overview</CardTitle>
             </CardHeader>
-            <CardContent className="pl-2">
-              <Overview />
-            </CardContent>
           </Card>
           <Card className="lg:col-span-3">
             <CardHeader>
@@ -130,9 +125,6 @@ export default function Dashboard() {
                 You made 265 sales this month.
               </CardDescription>
             </CardHeader>
-            <CardContent>
-              <RecentSales />
-            </CardContent>
           </Card>
         </div>
       </div>
