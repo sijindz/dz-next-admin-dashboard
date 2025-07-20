@@ -1,7 +1,7 @@
 import { useSideBarToggle } from '@/hooks/use-sidebar-toggle'
 import { SideNavItemGroup } from '@/types/type'
 import React from 'react'
-import { SideBarMenuItem } from './sidebar-menu-item';
+import { SideBarMenuItem } from '@/components/app/sidebar-menu-item';
 import classNames from 'classnames';
 
 const SideBarMenuGroup = ({ menuGroup }: { menuGroup: SideNavItemGroup }) => {

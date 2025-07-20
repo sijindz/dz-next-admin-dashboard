@@ -2,7 +2,6 @@ import * as React from "react"
 import {
     ColumnDef,
     ColumnFiltersState,
-    Pagination,
     flexRender,
     getCoreRowModel,
     getFilteredRowModel,
@@ -32,13 +31,16 @@ export function DataTable<TData, TValue>({ data, columns }: DataTableProps<TData
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
         []
     )
+
+    const [globalFilter, setGlobalFilter] = React.useState("");
+
     const table = useReactTable({
         data,
         columns,
         initialState: {
             pagination: {
                 "pageIndex": 0,
-                "pageSize": 5
+                "pageSize": 10
             }
         },
         onColumnFiltersChange: setColumnFilters,
@@ -46,18 +48,21 @@ export function DataTable<TData, TValue>({ data, columns }: DataTableProps<TData
         getPaginationRowModel: getPaginationRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
         state: {
-            columnFilters
+            globalFilter
         },
+        onGlobalFilterChange: setGlobalFilter
     })
 
     return (
         <div className="w-full">
             <div className="flex items-center py-4">
                 <Input
-                    placeholder="Filter product..."
-                    value={(table.getColumn("product")?.getFilterValue() as string) ?? ""}
-                    onChange={(event) =>
-                        table.getColumn("product")?.setFilterValue(event.target.value)
+                    placeholder="Search..."
+                    value={globalFilter }
+                    onChange={(event) =>{
+                         console.log(String(event.target.value));
+                         table.setGlobalFilter(String(event.target.value))
+                    }
                     }
                     className="max-w-sm"
                 />

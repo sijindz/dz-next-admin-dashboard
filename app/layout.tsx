@@ -18,7 +18,7 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
     <html lang="en" suppressHydrationWarning>
       <body className={karla.className + ' h-screen overflow-hidden'}>
         <ThemeProvider
-          themes={['dark', 'custom', 'light']}
+          themes={['dark', 'custom', 'light', 'dark-teal', 'black', 'dark-blue', 'sunlit', 'mint']}
           attribute="class"
           enableSystem
           disableTransitionOnChange
