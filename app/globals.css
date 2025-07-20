@@ -2,92 +2,315 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 @layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 20 14.3% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 20 14.3% 4.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14.3% 4.1%;
+    --primary: 24 9.8% 10%;
+    --primary-foreground: 60 9.1% 97.8%;
+    --secondary: 60 4.8% 95.9%;
+    --secondary-foreground: 24 9.8% 10%;
+    --muted: 60 4.8% 95.9%;
+    --muted-foreground: 25 5.3% 44.7%;
+    --accent: 60 4.8% 95.9%;
+    --accent-foreground: 24 9.8% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 20 5.9% 90%;
+    --input: 20 5.9% 90%;
+    --ring: 20 14.3% 4.1%;
+    --radius: 0.5rem;
+    --sidebar: 0 0% 100%;
+    --sidebar-foreground: 20 14.3% 4.1%;
+    --sidebar-muted: 60 4.8% 95.9%;
+    --sidebar-muted-foreground: 25 5.3% 44.7%;
+  }
 
-  @layer base {
+  .dark {
+    --background: 218 28% 7%;
+    /* Rich dark blue */
+    --foreground: 210 15% 95%;
+    /* Soft off-white */
 
-    @layer base {
-      :root {
-        --background: 0 0% 100%;
-        --foreground: 20 14.3% 4.1%;
-        --card: 0 0% 100%;
-        --card-foreground: 20 14.3% 4.1%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 20 14.3% 4.1%;
-        --primary: 24 9.8% 10%;
-        --primary-foreground: 60 9.1% 97.8%;
-        --secondary: 60 4.8% 95.9%;
-        --secondary-foreground: 24 9.8% 10%;
-        --muted: 60 4.8% 95.9%;
-        --muted-foreground: 25 5.3% 44.7%;
-        --accent: 60 4.8% 95.9%;
-        --accent-foreground: 24 9.8% 10%;
-        --destructive: 0 84.2% 60.2%;
-        --destructive-foreground: 60 9.1% 97.8%;
-        --border: 20 5.9% 90%;
-        --input: 20 5.9% 90%;
-        --ring: 20 14.3% 4.1%;
-        --radius: 0.5rem;
-        --sidebar: 0 0% 100%;
-        --sidebar-foreground: 20 14.3% 4.1%;
-        --sidebar-muted:60 4.8% 95.9%;
-        --sidebar-muted-foreground: 20 14.3% 4.1%;     
-      }
+    --card: 218 25% 10%;
+    /* Slightly elevated from background */
+    --card-foreground: 210 20% 92%;
 
-      .dark {
-        --background: 0 0% 3.9%;
-        --foreground: 0 0% 98%;
-        --card: 0 0% 3.9%;
-        --card-foreground: 0 0% 98%;
-        --popover: 0 0% 3.9%;
-        --popover-foreground: 0 0% 98%;
-        --primary: 0 0% 98%;
-        --primary-foreground: 0 0% 9%;
-        --secondary: 0 0% 14.9%;
-        --secondary-foreground: 0 0% 98%;
-        --muted: 0 0% 14.9%;
-        --muted-foreground: 0 0% 63.9%;
-        --accent: 0 0% 14.9%;
-        --accent-foreground: 0 0% 98%;
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 0 0% 98%;
-        --border: 0 0% 14.9%;
-        --input: 0 0% 14.9%;
-        --ring: 0 0% 83.1%;
-        --sidebar:  0 0% 3.9%;
-        --sidebar-foreground: 0 0% 98%;
-        --sidebar-muted: 0 2% 10%;
-        --sidebar-muted-foreground: 0 0% 63.9%;
-      }
+    --popover: 218 25% 12%;
+    --popover-foreground: 210 20% 92%;
 
-      .custom {
-        --background: 0 0% 100%;
-        --foreground: 20 14.3% 4.1%;
-        --card: 0 0% 100%;
-        --card-foreground: 220 11% 22%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 220 11% 22%;
-        --primary: 220 11% 22%;
-        --primary-foreground: 60 9.1% 97.8%;
-        --secondary: 60 4.8% 95.9%;
-        --secondary-foreground: 24 9.8% 10%;
-        --muted: 60 4.8% 95.9%;
-        --muted-foreground: 25 5.3% 44.7%;
-        --accent: 60 4.8% 95.9%;
-        --accent-foreground: 24 9.8% 10%;
-        --destructive: 0 84.2% 60.2%;
-        --destructive-foreground: 60 9.1% 97.8%;
-        --border: 20 5.9% 90%;
-        --input: 20 5.9% 90%;
-        --ring: 20 14.3% 4.1%;
-        --radius: 0.5rem;
-        --sidebar: 220 11% 22%;
-        --sidebar-foreground: 225 13% 49%;
-        --sidebar-muted: 219 11% 25%;
-        --sidebar-muted-foreground: 60 9.1% 97.8%
-      }
-    }
+    --primary: 182 75% 42%;
+    /* Bright teal */
+    --primary-foreground: 0 0% 100%;
+    /* Pure white on teal */
 
+    --secondary: 210 20% 20%;
+    /* Steel-gray */
+    --secondary-foreground: 210 15% 85%;
+
+    --muted: 210 15% 15%;
+    /* Dark muted blue */
+    --muted-foreground: 210 10% 60%;
+
+    --accent: 275 55% 45%;
+    /* Elegant violet accent */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 358 70% 52%;
+    /* Vivid red */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 215 18% 22%;
+    --input: 215 18% 22%;
+    --ring: 182 75% 42%;
+    /* Teal ring highlight */
+
+    --radius: 0.6rem;
+
+    --sidebar: 218 25% 10%;
+    --sidebar-foreground: 210 15% 92%;
+    --sidebar-muted: 218 20% 14%;
+    --sidebar-muted-foreground: 210 10% 65%;
+  }
+
+  .black {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --sidebar: 0 0% 3.9%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-muted: 0 2% 10%;
+    --sidebar-muted-foreground: 0 0% 63.9%;
+  }
+
+  .custom {
+    --background: 0 0% 100%;
+    --foreground: 20 14.3% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 11% 22%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 11% 22%;
+    --primary: 220 11% 22%;
+    --primary-foreground: 60 9.1% 97.8%;
+    --secondary: 60 4.8% 95.9%;
+    --secondary-foreground: 24 9.8% 10%;
+    --muted: 60 4.8% 95.9%;
+    --muted-foreground: 25 5.3% 44.7%;
+    --accent: 60 4.8% 95.9%;
+    --accent-foreground: 24 9.8% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 20 5.9% 90%;
+    --input: 20 5.9% 90%;
+    --ring: 20 14.3% 4.1%;
+    --radius: 0.5rem;
+    --sidebar: 220 11% 22%;
+    --sidebar-foreground: 225 13% 49%;
+    --sidebar-muted: 219 11% 25%;
+    --sidebar-muted-foreground: 60 9.1% 97.8%
+  }
+
+  .dark-blue {
+    --background: 220 25% 12%;
+    /* Deep navy blue */
+    --foreground: 220 15% 90%;
+    /* Soft silver-blue text */
+
+    --card: 220 20% 14%;
+    /* Slightly lighter than background */
+    --card-foreground: 220 15% 90%;
+
+    --popover: 220 20% 16%;
+    --popover-foreground: 220 15% 90%;
+
+    --primary: 220 60% 50%;
+    /* Vivid blue (buttons/links) */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 15% 22%;
+    /* Steel blue-gray */
+    --secondary-foreground: 220 10% 80%;
+
+    --muted: 220 10% 20%;
+    --muted-foreground: 220 5% 60%;
+
+    --accent: 210 65% 55%;
+    /* Brighter blue for hover/focus */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 25%;
+    --input: 220 15% 25%;
+    --ring: 220 60% 50%;
+    /* Same as primary */
+
+    --radius: 0.5rem;
+
+    --sidebar: 220 25% 10%;
+    --sidebar-foreground: 220 15% 90%;
+    --sidebar-muted: 220 15% 20%;
+    --sidebar-muted-foreground: 220 10% 60%;
+  }
+
+  .dark-teal {
+    --background: 210 20% 8%;
+    /* Deep navy */
+    --foreground: 210 15% 90%;
+    /* Soft white-blue */
+    --card: 210 20% 10%;
+    /* Slightly lighter than background */
+    --card-foreground: 210 15% 90%;
+
+    --popover: 210 20% 10%;
+    --popover-foreground: 210 15% 90%;
+
+    --primary: 180 60% 40%;
+    /* Vibrant teal */
+    --primary-foreground: 0 0% 100%;
+    /* White text on teal */
+
+    --secondary: 210 15% 20%;
+    /* Steel blue-gray */
+    --secondary-foreground: 210 15% 90%;
+
+    --muted: 210 10% 15%;
+    /* Desaturated dark blue */
+    --muted-foreground: 210 5% 60%;
+
+    --accent: 180 40% 35%;
+    /* Dark teal accent */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 70% 45%;
+    /* Strong red */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 10% 25%;
+    /* Dark gray-blue */
+    --input: 210 10% 25%;
+    --ring: 180 60% 40%;
+    /* Teal glow */
+
+    --radius: 0.5rem;
+
+    --sidebar: 210 20% 10%;
+    --sidebar-foreground: 210 15% 90%;
+    --sidebar-muted: 210 10% 15%;
+    --sidebar-muted-foreground: 210 5% 60%;
+  }
+
+  .sunlit {
+    --background: 45 100% 98%;
+    /* Light ivory yellow */
+    --foreground: 40 20% 20%;
+    /* Dark warm brown-gray */
+
+    --card: 45 100% 97%;
+    /* Slightly darker than background */
+    --card-foreground: 40 25% 20%;
+
+    --popover: 45 100% 96%;
+    --popover-foreground: 40 25% 20%;
+
+    --primary: 39 60% 40%;
+    /* Muted amber */
+    --primary-foreground: 45 100% 98%;
+    /* Light text on amber */
+
+    --secondary: 42 30% 90%;
+    /* Beige-gray */
+    --secondary-foreground: 40 25% 30%;
+
+    --muted: 42 20% 88%;
+    --muted-foreground: 40 10% 50%;
+
+    --accent: 38 70% 45%;
+    /* Gold highlight */
+    --accent-foreground: 45 100% 98%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 45 100% 98%;
+
+    --border: 42 30% 85%;
+    --input: 42 30% 85%;
+    --ring: 39 60% 40%;
+    /* Amber focus ring */
+
+    --radius: 0.5rem;
+
+    --sidebar: 42 30% 93%;
+    /* Soft light beige */
+    --sidebar-foreground: 40 25% 30%;
+    --sidebar-muted: 42 20% 88%;
+    --sidebar-muted-foreground: 40 10% 50%;
+  }
+
+  .mint {
+    --background: 120 15% 92%;
+    /* Pale sage background */
+    --foreground: 140 20% 18%;
+    /* Deep forest green */
+
+    --card: 120 15% 90%;
+    --card-foreground: 140 20% 18%;
+
+    --popover: 120 15% 88%;
+    --popover-foreground: 140 20% 18%;
+
+    --primary: 140 30% 28%;
+    /* Rich soft green */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 120 10% 80%;
+    /* Desaturated light green-gray */
+    --secondary-foreground: 140 15% 25%;
+
+    --muted: 120 10% 75%;
+    --muted-foreground: 140 10% 40%;
+
+    --accent: 150 35% 35%;
+    /* Deep mint accent */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 120 10% 75%;
+    --input: 120 10% 75%;
+    --ring: 140 30% 28%;
+
+    --radius: 0.5rem;
+
+    --sidebar: 120 12% 85%;
+    --sidebar-foreground: 140 20% 25%;
+    --sidebar-muted: 120 10% 75%;
+    --sidebar-muted-foreground: 140 10% 45%;
   }
 }
 
@@ -119,7 +342,7 @@
 }
 
 * {
-  scrollbar-width: thin ;
+  scrollbar-width: thin;
   scrollbar-color: #8d8d8d;
 }
 

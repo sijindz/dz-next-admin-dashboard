@@ -42,6 +42,33 @@ export function ThemeSwitcher() {
                         className='ml-2 h-4 w-4'
                     />}
                 </DropdownMenuItem>
+
+                <DropdownMenuItem onClick={() => setTheme("black")}>
+                    <span>Black</span>{theme === 'black' && <CheckIcon
+                        className='ml-2 h-4 w-4'
+                    />}
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("dark-blue")}>
+                    <span>Dark Blue</span>{theme === 'dark-blue' && <CheckIcon
+                        className='ml-2 h-4 w-4'
+                    />}
+                </DropdownMenuItem>
+
+                <DropdownMenuItem onClick={() => setTheme("dark-teal")}>
+                    <span>Dark Teal</span>{theme === 'dark-teal' && <CheckIcon
+                        className='ml-2 h-4 w-4'
+                    />}
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("mint")}>
+                    <span>Mint</span>{theme === 'mint' && <CheckIcon
+                        className='ml-2 h-4 w-4'
+                    />}
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("sunlit")}>
+                    <span>Sunlit</span>{theme === 'sunlit' && <CheckIcon
+                        className='ml-2 h-4 w-4'
+                    />}
+                </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
     )

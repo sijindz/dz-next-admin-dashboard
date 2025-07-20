@@ -3,8 +3,8 @@ import { SIDENAV_ITEMS } from '@/app/menu_constants';
 import classNames from 'classnames';
 import React, { useEffect, useState } from 'react'
 import { useSideBarToggle } from '@/hooks/use-sidebar-toggle';
-import SideBarMenuGroup from './sidebar-menu-group';
-import { SideBarLogo } from './sidebar-logo';
+import SideBarMenuGroup from '@/components/app/sidebar-menu-group';
+import { SideBarLogo } from '@/components/app/sidebar-logo';
 
 
 export const SideBar = () => {
