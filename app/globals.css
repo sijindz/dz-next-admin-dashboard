@@ -324,6 +324,11 @@ body {
   }
 }
 
+.popover-content-width-same-as-its-trigger {
+  width: var(--radix-popover-trigger-width);
+  max-height: var(--radix-popover-content-available-height)
+}
+
 
 .sidebar {
   scrollbar-width: thin;
@@ -354,4 +359,8 @@ body {
 *::-webkit-scrollbar-thumb {
   background: #8d8d8d;
   border-radius: 5px;
+}
+
+.swal2-container {
+  z-index: 99999 !important;
 }

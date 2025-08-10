@@ -11,9 +11,10 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { CheckIcon, Palette } from "lucide-react"
+import { THEME_ITEMS } from "@/constants/menu_constants"
 
 export function ThemeSwitcher() {
-    const { setTheme, theme } = useTheme()
+    const { setTheme, theme,themes } = useTheme()
 
     const isActive = (themeName: string) => {
         return (theme === themeName && <CheckIcon
@@ -28,47 +29,17 @@ export function ThemeSwitcher() {
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="z-[99998]">
-                <DropdownMenuItem onClick={() => setTheme("light")}>
-                    <span>Light</span>{theme === 'light' && <CheckIcon
-                        className='ml-2 h-4 w-4'
-                    />}
 
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("dark")}>
-                    <span>Dark</span>{isActive('dark')}
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("custom")}>
-                    <span>Custom</span>{theme === 'custom' && <CheckIcon
-                        className='ml-2 h-4 w-4'
-                    />}
-                </DropdownMenuItem>
+                {THEME_ITEMS.map((item, idx) => {
+                    return <DropdownMenuItem key={idx} onClick={() => {
+                        setTheme(`${item.theme}`);
+                        }}>
+                        <span>{item.name}</span>{theme === item.theme  && <CheckIcon
+                            className='ml-2 h-4 w-4'
+                        />}
+                    </DropdownMenuItem>
 
-                <DropdownMenuItem onClick={() => setTheme("black")}>
-                    <span>Black</span>{theme === 'black' && <CheckIcon
-                        className='ml-2 h-4 w-4'
-                    />}
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("dark-blue")}>
-                    <span>Dark Blue</span>{theme === 'dark-blue' && <CheckIcon
-                        className='ml-2 h-4 w-4'
-                    />}
-                </DropdownMenuItem>
-
-                <DropdownMenuItem onClick={() => setTheme("dark-teal")}>
-                    <span>Dark Teal</span>{theme === 'dark-teal' && <CheckIcon
-                        className='ml-2 h-4 w-4'
-                    />}
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("mint")}>
-                    <span>Mint</span>{theme === 'mint' && <CheckIcon
-                        className='ml-2 h-4 w-4'
-                    />}
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("sunlit")}>
-                    <span>Sunlit</span>{theme === 'sunlit' && <CheckIcon
-                        className='ml-2 h-4 w-4'
-                    />}
-                </DropdownMenuItem>
+                })}
             </DropdownMenuContent>
         </DropdownMenu>
     )

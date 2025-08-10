@@ -1,141 +1,165 @@
+'use client';
 
-import { Overview } from '@/app/components/overview'
-import { RecentSales } from '@/app/components/recent-sales'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import axiosInterceptorInstance from "@/axiosInterceptorInstance";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import moment from "moment";
+import { useEffect, useState } from "react";
+import { BsBook, BsPerson } from "react-icons/bs";
+import { Bar, BarChart, CartesianGrid, Legend, Rectangle, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
 
+export const dynamic = 'force-dynamic';
 
 export default function Dashboard() {
-  return (
-    <>
-       <h2 className="text-3xl font-bold tracking-tight my-4">Dashboard</h2>
 
-      <div className="flex-1 space-y-4">
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Total Revenue
-              </CardTitle>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                className="h-4 w-4 text-muted-foreground"
-              >
-                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-              </svg>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">$45,231.89</div>
-              <p className="text-xs text-muted-foreground">
-                +20.1% from last month
-              </p>
-            </CardContent>
-          </Card>
+    const [status, setStatus] = useState({ totalBooks: 0, totalMembers: 0, issuedToday: 0, returnedToday: 0 });
 
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Subscriptions
-              </CardTitle>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                className="h-4 w-4 text-muted-foreground"
-              >
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">+2350</div>
-              <p className="text-xs text-muted-foreground">
-                +180.1% from last month
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Sales</CardTitle>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                className="h-4 w-4 text-muted-foreground"
-              >
-                <rect width="20" height="14" x="2" y="5" rx="2" />
-                <path d="M2 10h20" />
-              </svg>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">+12,234</div>
-              <p className="text-xs text-muted-foreground">
-                +19% from last month
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                Active Now
-              </CardTitle>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                className="h-4 w-4 text-muted-foreground"
-              >
-                <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-              </svg>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">+573</div>
-              <p className="text-xs text-muted-foreground">
-                +201 since last hour
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-        <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-7">
-          <Card className="lg:col-span-4">
-            <CardHeader>
-              <CardTitle>Overview</CardTitle>
-            </CardHeader>
-            <CardContent className="pl-2">
-              <Overview />
-            </CardContent>
-          </Card>
-          <Card className="lg:col-span-3">
-            <CardHeader>
-              <CardTitle>Recent Sales</CardTitle>
-              <CardDescription>
-                You made 265 sales this month.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <RecentSales />
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-    </>
-  )
+    const [chartData, setChartData] = useState([{ issuedBookCount: 0, returnedBookCount: 0, date: "" }]);
+
+    async function loadData() {
+        await axiosInterceptorInstance.get('lms-status')
+            .then(function (response) {
+                setStatus(response.data.data);
+            })
+            .catch(
+                function (ex) {
+                    console.log(ex);
+                }
+            );
+    }
+
+    async function loadChartData() {
+        const endDate = moment().format('DD-MM-yyyy');
+        const startDate = moment().add(-7, 'd').format('DD-MM-yyyy');
+        await axiosInterceptorInstance.get(`lms-status/chart-data/issue-return-status?startDate=${startDate}&endDate=${endDate}`)
+            .then(function (response) {
+                setChartData(response.data.data);
+            })
+            .catch(
+                function (ex) {
+                    console.log(ex);
+                }
+            );
+    }
+
+    useEffect(() => {
+        loadData();
+        loadChartData();
+    }, []);
+
+    return (
+        <>
+            <h2 className="text-3xl font-bold tracking-tight my-4">Dashboard</h2>
+
+            <div className="flex-1 space-y-8">
+                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                    <Card>
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-sm font-medium">Total  Books</CardTitle>
+                            <BsBook size={20} />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-2xl font-bold">{status ? status?.totalBooks : 0}</div>
+                            <p className="text-xs text-muted-foreground">
+                                total number of active books
+                            </p>
+                        </CardContent>
+                    </Card>
+
+                    <Card>
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-sm font-medium">
+                                Members
+                            </CardTitle>
+                            <BsPerson size={20} />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-2xl font-bold">{status ? status?.totalMembers : 0}</div>
+                            <p className="text-xs text-muted-foreground">
+                                Total number active members
+                            </p>
+                        </CardContent>
+                    </Card>
+                    <Card>
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-sm font-medium">Books issued today</CardTitle>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                className="h-4 w-4 text-muted-foreground"
+                            >
+                                <rect width="20" height="14" x="2" y="5" rx="2" />
+                                <path d="M2 10h20" />
+                            </svg>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-2xl font-bold">{status ? status?.issuedToday : 0}</div>
+                            <p className="text-xs text-muted-foreground">
+                                Number of books issued today
+                            </p>
+                        </CardContent>
+                    </Card>
+                    <Card>
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-sm font-medium">
+                                Books returned today
+                            </CardTitle>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                className="h-4 w-4 text-muted-foreground"
+                            >
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                            </svg>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-2xl font-bold">{status ? status?.returnedToday : 0}</div>
+                            <p className="text-xs text-muted-foreground">
+                                Number of books returned today
+                            </p>
+                        </CardContent>
+                    </Card>
+                </div>
+                <div className="grid gap-4 grid-cols-1">
+                    <Card className="w-full">
+                        <CardHeader>
+                            <CardTitle>Overview</CardTitle>
+                        </CardHeader>
+                        <ResponsiveContainer width="100%" height={350}>
+                            {chartData &&
+                                <BarChart
+                                    width={500}
+                                    height={300}
+                                    data={chartData}
+                                    margin={{
+                                        top: 10,
+                                        right: 30,
+                                        left: 20,
+                                        bottom: 5,
+                                    }}
+                                >
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="date"/>
+                                    <YAxis />
+                                    <Tooltip />
+                                    <Legend />
+                                    <Bar name="Issued Books" dataKey="issuedBookCount" fill="#8884d8" className="text-sidebar-foreground" />
+                                    <Bar name="Returned Books" dataKey="returnedBookCount" fill="#82ca9d" className="black" />
+                                </BarChart>
+                            }
+                        </ResponsiveContainer>
+                    </Card>
+                </div>
+            </div>
+        </>
+    )
 }
